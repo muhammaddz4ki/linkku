@@ -14,6 +14,9 @@
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background: linear-gradient(135deg, #0d0d0d, #1c1717, #333232, #4a148c);
     background-size: 400% 400%;
     background-attachment: fixed;
@@ -41,6 +44,22 @@
     }
 }
 
+/* Workaround untuk Safari iOS */
+@supports (-webkit-touch-callout: none) {
+    body {
+        background-attachment: scroll; /* Safari iOS tidak mendukung fixed */
+    }
+}
+
+/* Penyesuaian untuk Mobile */
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+        background-attachment: scroll;
+    }
+}
+
+
 h1, h2, h3, p {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
@@ -57,7 +76,7 @@ h1, h2, h3, p {
             overflow: hidden;
         }
 
-        .logo {
+        .ilogo {
             width: 150px;
             margin-bottom: 20px;
             animation: fadeIn 2s ease-in-out;
@@ -73,74 +92,116 @@ h1, h2, h3, p {
 
 .parallax {
     position: relative;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 400px; /* Sesuaikan tinggi */
+    height: 100vh; /* Selalu memenuhi layar */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     animation: changeBackground 12s infinite ease-in-out;
     transition: background-image 1.5s ease-in-out;
-    border-radius: 20px;
-    overflow: hidden;
+    z-index: -1; /* Supaya tetap di belakang konten */
 }
 
-/* Efek tambahan dengan pseudo-element */
+/* ✅ Efek overlay agar teks tetap terbaca */
 .parallax::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4); /* Efek overlay gelap */
+    background: rgba(0, 0, 0, 0.3); /* Overlay lebih soft */
     transition: opacity 1.5s ease-in-out;
 }
 
-/* Responsif untuk Mobile */
+/* ✅ Responsif untuk Mobile */
 @media (max-width: 768px) {
     .parallax {
-        height: 300px;
-        border-radius: 15px;
+        height: 80vh; /* Supaya tetap besar di mobile */
+        background-attachment: scroll; /* Menghindari bug di iOS */
     }
 }
 
+@media (max-width: 480px) {
+    .parallax {
+        height: 60vh; /* Sesuaikan dengan layar lebih kecil */
+    }
+}
 
+/* Styling navbar */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    position: relative;
+}
 
+/* Logo di pojok kiri */
+.logo {
+    display: flex;
+    align-items: center;
+}
 
-        nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px 20px;
-            background: rgba(0, 0, 0, 0.8);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+.logo img {
+    height: 40px; /* Sesuaikan ukuran logo */
+    margin-right: 10px;
+}
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-        }
+.logo span {
+    font-size: 18px;
+    font-weight: bold;
+}
 
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            transition: 0.3s;
-        }
+/* Menu tengah */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1; /* Supaya berada di tengah */
+}
 
-        .nav-links a:hover {
-            background: #ff6600;
-            border-radius: 10px;
-        }
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+}
 
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: #fff;
-        }
+/* Hamburger menu (tombol toggle) */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Responsif: Menu berubah saat layar kecil */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Sembunyikan menu */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #333;
+        flex-direction: column;
+        text-align: center;
+        z-index: 1; /* Supaya tetap di belakang konten */
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 15px;
+    }
+
+    .menu-toggle {
+        display: block; /* Munculkan tombol hamburger */
+    }
+}
+
+.nav-links.active {
+    display: flex;
+}
+
 
         @media (max-width: 768px) {
             nav {
@@ -182,16 +243,38 @@ h1, h2, h3, p {
 .contact-btn {
     display: inline-block;
     padding: 12px 24px;
-    background: #25d366; /* Warna WhatsApp */
+    background: transparent; /* Default transparan */
     color: white;
     text-decoration: none;
     font-weight: bold;
     border-radius: 8px;
-    transition: 0.3s;
+    border: 2px solid #25d366; /* Garis hijau WhatsApp */
+    position: relative; /* Pastikan bisa diberi efek overlay */
+    overflow: hidden; /* Mencegah efek keluar dari tombol */
+    z-index: 10; /* Supaya ada di lapisan terdepan */
+    transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
+/* ✅ Efek warna keluar saat disentuh */
+.contact-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #25d366; /* Warna WhatsApp */
+    transform: scaleX(0); /* Mulai dari 0 */
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+    z-index: -2; /* Agar di belakang teks */
+}
+
+/* ✅ Efek saat hover */
 .contact-btn:hover {
-    background: #1ebe57;
+    color: white;
+    border-color: #1ebe57; /* Sedikit lebih gelap */
+}
+
+.contact-btn:hover::before {
+    transform: scaleX(1); /* Warna penuh saat hover */
 }
 
 
@@ -342,7 +425,7 @@ h1, h2, h3, p {
             font-weight: bold;
             text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s ease-in-out;
+            transition: background 0.5s ease-in-out;
         }
 
         .portfolio-btn:hover {
@@ -358,17 +441,6 @@ h1, h2, h3, p {
 
 
     </style>
-</head>
-<body>
-    <header>
-        <div class="parallax">
-            <img src="foto/LINKKU22.png" alt="Linkku Aerial Logo" class="logo">
-            <h1>Linkku Aerial</h1>
-            <p>Jasa Videografi Aerial Cinematic Profesional</p>
-            <div class="cta-container">
-            </div>
-        </div>
-    </header>
     
     
     <script>
@@ -383,18 +455,34 @@ h1, h2, h3, p {
 
 <body>
     <nav>
+        <div class="logo">
+            <img src="foto/LINKKU22.png" alt="Logo">
+            <span>LINKKU AERIAL</span>
+        </div>
         <div class="menu-toggle" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
         </div>
         <div class="nav-links">
-            <a href="https://wa.me/6285269617993" target="_blank" class="contact-btn">Booking</a>
             <a href="#about">Tentang Kami</a>
             <a href="#services">Layanan</a>
             <a href="#gallery">Galeri</a>
             <a href="#testimonials">Testimoni</a>
-            
         </div>
     </nav>
+    
+</head>
+<body>
+    <header>
+        <div class="parallax">
+            <img src="foto/LINKKU22.png" alt="Linkku Aerial Logo" class="ilogo">
+            <h1>Linkku Aerial</h1>
+            <p>Jasa Videografi Aerial Cinematic Profesional</p>
+            <a href="https://wa.me/6285269617993" target="_blank" class="contact-btn">Booking</a>
+            <div class="cta-container">
+            </div>
+        </div>
+    </header>
+    
     <section id="about" class="about">
         <div class="about-content">
             <h2>Tentang Kami</h2>
@@ -405,12 +493,6 @@ h1, h2, h3, p {
                 <p>Lihat lebih banyak proyek kami di Google Drive.</p>
                 <a href="https://drive.google.com/drive/folders/1tJKLWoZCMK54vhZ4CD7AtZlHV2G31FTq" 
                    target="_blank" class="portfolio-btn">Lihat Portofolio</a>
-            </div>
-    
-            <div class="contact-section">
-                <h3>Hubungi Kami</h3>
-                <p>Siap untuk mengabadikan momen terbaik Anda? Hubungi kami melalui WhatsApp!</p>
-                <a href="https://wa.me/6285269617993" target="_blank" class="contact-btn">Booking</a>
             </div>
         </div>
     </section>
