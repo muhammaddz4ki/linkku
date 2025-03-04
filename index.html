@@ -570,6 +570,7 @@ nav {
 <section id="gallery">
     <h2>Galeri</h2>
     <div class="gallery-container">
+        <button class="nav-button left" onclick="scrollGallery(-1)">&#10094;</button>
         <div class="gallery">
             <img src="foto/1.jpg" alt="Proyek 1" onclick="openModal(this.src)">
             <img src="foto/2.jpg" alt="Proyek 2" onclick="openModal(this.src)">
@@ -585,6 +586,7 @@ nav {
             <img src="foto/12.jpg" alt="Proyek 12" onclick="openModal(this.src)">
             <img src="foto/13.jpg" alt="Proyek 13" onclick="openModal(this.src)">
         </div>
+        <button class="nav-button right" onclick="scrollGallery(1)">&#10095;</button>
     </div>
 </section>
 
@@ -637,4 +639,3 @@ nav {
 </script>
 </body>
 </html>
-
