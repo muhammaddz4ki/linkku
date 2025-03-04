@@ -7,7 +7,7 @@
     <title>Linkku Aerial</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="icon" href="foto/LINKKU11.png" type="image/png">
+    <link rel="icon" href="foto/LINKKU1.jpg" type="image/png">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -132,42 +132,34 @@
             text-align: center;
         }
 
+        .gallery-container {
+        overflow-x: auto;
+        white-space: nowrap;
+        display: flex;
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
+        }
+
+        .gallery-container::-webkit-scrollbar {
+            display: none;
+        }
+
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
+            display: flex;
+            gap: 10px; 
         }
 
         .gallery img {
-            width: 100%;
+            width: 300px; 
             height: auto;
             border-radius: 10px;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease-in-out;
         }
 
         .gallery img:hover {
             transform: scale(1.1);
         }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-info a {
-            color: #ff6600;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-            transform: scale(1.1);
-        }
 
         footer {
             text-align: center;
@@ -240,6 +232,33 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ff6600;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+
     </style>
 </head>
 <body>
@@ -248,7 +267,7 @@
         <img src="foto/LINKKU22.png" alt="Linkku Aerial Logo" class="logo">
         <h1>Linkku Aerial</h1>
         <p>Jasa Videografi Aerial Cinematic Profesional</p>
-        <a href="#contact" class="btn">Hubungi Kami</a>
+        <a href="https://wa.me/6285269617993" class="btn">Hubungi Kami</a>
     </div>
     <script>
         function toggleMenu() {
@@ -268,12 +287,13 @@
             <a href="#services">Layanan</a>
             <a href="#gallery">Galeri</a>
             <a href="#testimonials">Testimoni</a>
-            <a href="#contact">Kontak</a>
         </div>
     </nav>
-<section id="about">
-    <h2>Tentang Kami</h2>
-    <p>Linkku Aerial adalah jasa videografi aerial yang menawarkan kualitas cinematic terbaik dengan teknologi drone terkini.</p>
+    <section id="about" class="about">
+    <div class="about-content">
+        <h2>Tentang Kami</h2>
+        <p>Linkku Aerial adalah penyedia jasa videografi aerial cinematic profesional yang mengabadikan momen terbaik Anda dari perspektif yang unik dan menakjubkan.</p>
+    </div>
 </section>
 <section id="services">
     <h2>Layanan</h2>
@@ -302,13 +322,25 @@
 </section>
 <section id="gallery">
     <h2>Galeri</h2>
-    <div class="gallery">
-        <img src="gallery1.jpg" alt="Proyek 1">
-        <img src="gallery2.jpg" alt="Proyek 2">
-        <img src="gallery3.jpg" alt="Proyek 3">
-        <img src="gallery4.jpg" alt="Proyek 4">
+    <div class="gallery-container">
+        <div class="gallery">
+            <img src="foto/1.jpg" alt="Proyek 1">
+            <img src="foto/2.jpg" alt="Proyek 2">
+            <img src="foto/3.jpg" alt="Proyek 3">
+            <img src="foto/4.jpg" alt="Proyek 4">
+            <img src="foto/5.jpg" alt="Proyek 5">
+            <img src="foto/6.jpg" alt="Proyek 6">
+            <img src="foto/7.jpg" alt="Proyek 7">
+            <img src="foto/8.jpg" alt="Proyek 8">
+            <img src="foto/9.jpg" alt="Proyek 9">
+            <img src="foto/10.jpg" alt="Proyek 10">
+            <img src="foto/11.jpg" alt="Proyek 11">
+            <img src="foto/12.jpg" alt="Proyek 12">
+            <img src="foto/13.jpg" alt="Proyek 13">
+        </div>
     </div>
 </section>
+
 <section id="testimonials" class="testimonials">
     <h2>Testimoni</h2>
     <div class="testimonial-card">
@@ -320,17 +352,12 @@
         <h4>- Klien</h4>
     </div>
 </section>
-<section id="contact">
-    <h2>Kontak</h2>
-    <div class="contact-info">
-        <a href="https://www.instagram.com/linkku_aerial" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://www.tiktok.com/@inilinkku._" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-    </div>
-</section>
+
 <footer>
     <div class="social">
         <a href="https://www.instagram.com/linkku_aerial" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://www.tiktok.com/@inilinkku._" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/6285269617993" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
     <p>&copy; 2025 Linkku Aerial. Semua Hak Cipta Dilindungi.</p>
 </footer>
