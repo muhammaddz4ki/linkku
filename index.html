@@ -295,29 +295,30 @@ nav {
         align-items: center;
         justify-content: center;
         position: relative;
-        overflow-x: auto;
-        white-space: nowrap;
-        max-width: 90%;
+        max-width: 100%;
         margin: auto;
         border-radius: 15px;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
         perspective: 1500px;
-    }
-
-    .gallery-container::-webkit-scrollbar {
-        display: none;
     }
 
     .gallery {
         display: flex;
         gap: 15px;
         padding: 20px 0;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .gallery::-webkit-scrollbar {
+        display: none;
     }
 
     .gallery img {
-        width: 280px;
-        height: 180px;
+        width: 100%;
+        max-width: 280px;
+        height: auto;
         border-radius: 15px;
         transition: transform 0.4s ease-in-out, box-shadow 0.4s;
         cursor: pointer;
@@ -330,7 +331,28 @@ nav {
         box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
     }
 
-    /* Modal Styles */
+    .nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 5px;
+        z-index: 10;
+    }
+
+    .left {
+        left: 0;
+    }
+
+    .right {
+        right: 0;
+    }
+
     .modal {
         display: none;
         position: fixed;
@@ -341,22 +363,37 @@ nav {
         height: 100%;
         background-color: rgba(0, 0, 0, 0.8);
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .modal-content {
-        margin-top: 5%;
-        max-width: 80%;
-        max-height: 80%;
+        max-width: 90%;
+        max-height: 90%;
         border-radius: 10px;
     }
 
     .close {
         position: absolute;
-        top: 20px;
-        right: 30px;
+        top: 15px;
+        right: 25px;
         color: white;
         font-size: 40px;
+        font-weight: bold;
         cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .gallery {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gallery img {
+            max-width: 100%;
+            transform: none;
+        }
     }
         footer {
             text-align: center;
@@ -591,19 +628,24 @@ nav {
 </section>
 
 <!-- Modal -->
-<div id="imageModal" class="modal" onclick="closeModal()">
-    <span class="close">&times;</span>
+<div id="imageModal" class="modal" onclick="closeModal()" style="display: none;">
+    <span class="close" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="modalImg">
 </div>
 
 <script>
     function openModal(src) {
-        document.getElementById("imageModal").style.display = "block";
+        document.getElementById("imageModal").style.display = "flex";
         document.getElementById("modalImg").src = src;
     }
 
     function closeModal() {
         document.getElementById("imageModal").style.display = "none";
+    }
+
+    function scrollGallery(direction) {
+        const gallery = document.querySelector(".gallery");
+        gallery.scrollBy({ left: direction * 300, behavior: 'smooth' });
     }
 </script>
 
