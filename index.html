@@ -9,14 +9,42 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="foto/LINKKU1.jpg" type="image/png">
     <style>
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #0d0d0d;
-            color: #fff;
-            scroll-behavior: smooth;
-        }
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0d0d0d, #1c1717, #333232, #4a148c);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    color: #fff;
+    scroll-behavior: smooth;
+    animation: fadeIn 1s ease-in-out, animateGradient 10s infinite alternate;
+}
+
+/* Efek Gradasi Bergerak */
+@keyframes animateGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Animasi Fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1, h2, h3, p {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
 
         header {
             height: 100vh;
@@ -35,13 +63,46 @@
             animation: fadeIn 2s ease-in-out;
         }
 
-        .parallax {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 60px;
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            animation: fadeIn 2s ease-in-out;
-        }
+        @keyframes changeBackground {
+    0% { background-image: url('foto/3.jpg'); }
+    25% { background-image: url('foto/5.jpg'); }
+    50% { background-image: url('foto/10.jpg'); }
+    75% { background-image: url('foto/14.jpg'); }
+    100% { background-image: url('foto/15.jpg'); }
+}
+
+.parallax {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Sesuaikan tinggi */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: changeBackground 12s infinite ease-in-out;
+    transition: background-image 1.5s ease-in-out;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Efek tambahan dengan pseudo-element */
+.parallax::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* Efek overlay gelap */
+    transition: opacity 1.5s ease-in-out;
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 768px) {
+    .parallax {
+        height: 300px;
+        border-radius: 15px;
+    }
+}
+
+
+
 
         nav {
             display: flex;
@@ -113,19 +174,28 @@
             }
         }
 
-        .btn {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #ff6600, #ff3300);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: background 0.4s, transform 0.4s;
-        }
+        .contact-section {
+    margin-top: 20px;
+    text-align: center;
+}
 
-        .btn:hover {
-            background: linear-gradient(135deg, #ff3300, #ff6600);
-            transform: scale(1.2);
-        }
+.contact-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #25d366; /* Warna WhatsApp */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background: #1ebe57;
+}
+
+
+
 
         section {
             padding: 80px 20px;
@@ -279,6 +349,10 @@
             background-color: #e65c00;
         }
 
+        html {
+    scroll-behavior: smooth;
+}
+
 
 
 
@@ -286,21 +360,27 @@
     </style>
 </head>
 <body>
-<header>
-    <div class="parallax">
-        <img src="foto/LINKKU22.png" alt="Linkku Aerial Logo" class="logo">
-        <h1>Linkku Aerial</h1>
-        <p>Jasa Videografi Aerial Cinematic Profesional</p>
-        <a href="https://wa.me/6285269617993" class="btn">Hubungi Kami</a>
-    </div>
+    <header>
+        <div class="parallax">
+            <img src="foto/LINKKU22.png" alt="Linkku Aerial Logo" class="logo">
+            <h1>Linkku Aerial</h1>
+            <p>Jasa Videografi Aerial Cinematic Profesional</p>
+            <div class="cta-container">
+            </div>
+        </div>
+    </header>
+    
+    
     <script>
         function toggleMenu() {
             document.querySelector(".nav-links").classList.toggle("active");
         }
     </script>
+        
 </body>
 </html>
 </header>
+
 <body>
     <nav>
         <div class="menu-toggle" onclick="toggleMenu()">
@@ -317,14 +397,22 @@
         <div class="about-content">
             <h2>Tentang Kami</h2>
             <p>Linkku Aerial adalah penyedia jasa videografi aerial cinematic profesional yang mengabadikan momen terbaik Anda dari perspektif yang unik dan menakjubkan.</p>
+            
             <div class="portfolio">
                 <h3>Portofolio Kami</h3>
                 <p>Lihat lebih banyak proyek kami di Google Drive.</p>
                 <a href="https://drive.google.com/drive/folders/1tJKLWoZCMK54vhZ4CD7AtZlHV2G31FTq" 
                    target="_blank" class="portfolio-btn">Lihat Portofolio</a>
             </div>
+    
+            <div class="contact-section">
+                <h3>Hubungi Kami</h3>
+                <p>Siap untuk mengabadikan momen terbaik Anda? Hubungi kami melalui WhatsApp!</p>
+                <a href="https://wa.me/6285269617993" target="_blank" class="contact-btn">Booking</a>
+            </div>
         </div>
     </section>
+    
     
 <section id="services">
     <h2>Layanan</h2>
@@ -384,14 +472,16 @@
     </div>
 </section>
 
-<footer>
-    <div class="social">
-        <a href="https://www.instagram.com/linkku_aerial" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@inilinkku._" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://wa.me/6285269617993" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    </div>
-    <p>&copy; 2025 Linkku Aerial. Semua Hak Cipta Dilindungi.</p>
-</footer>
+        <footer>
+            <div class="social">
+                <a href="https://www.instagram.com/linkku_aerial" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@inilinkku._" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/6281234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; 2025 Linkku Aerial. Semua Hak Cipta Dilindungi.</p>
+        </footer>
+    </body>
+
 <script>
     window.addEventListener("scroll", function () {
         const parallax = document.querySelector(".parallax");
