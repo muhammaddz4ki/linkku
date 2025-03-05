@@ -17,12 +17,13 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #0d0d0d, #1c1717, #333232, #4a148c);
+    background: linear-gradient(135deg, #0a0a0a, #1f1f1f, #3a3a3a, #009688);
     background-size: 400% 400%;
     background-attachment: fixed;
-    color: #fff;
+    color: #ffffff;
     scroll-behavior: smooth;
-    animation: fadeIn 1s ease-in-out, animateGradient 10s infinite alternate;
+    animation: fadeIn 1s ease-in-out, animateGradient 12s infinite alternate;
+    text-shadow: 0 0 10px rgba(0, 150, 136, 0.8);
 }
 
 /* Efek Gradasi Bergerak */
@@ -36,7 +37,7 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
@@ -44,17 +45,51 @@
     }
 }
 
-/* Workaround untuk Safari iOS */
-@supports (-webkit-touch-callout: none) {
-    body {
-        background-attachment: scroll; /* Safari iOS tidak mendukung fixed */
-    }
+/* Efek Hover pada Tombol */
+button {
+    background: #009688;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* Penyesuaian untuk Mobile */
+button:hover {
+    background: #00bfa5;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 150, 136, 0.8);
+}
+
+/* Ikon Drone */
+.drone-icon {
+    font-size: 100px;
+    text-align: center;
+    margin: 20px 0;
+    animation: droneFly 3s infinite alternate ease-in-out;
+}
+
+@keyframes droneFly {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
     body {
         background-size: cover;
+        background-attachment: scroll;
+    }
+
+    .drone-icon {
+        font-size: 70px;
+    }
+}
+
+/* Safari iOS Fix */
+@supports (-webkit-touch-callout: none) {
+    body {
         background-attachment: scroll;
     }
 }
@@ -526,6 +561,7 @@ nav {
 
 
 
+
     </style>
     
     
@@ -552,6 +588,7 @@ nav {
             <a href="#about">Tentang Kami</a>
             <a href="#services">Layanan</a>
             <a href="#gallery">Galeri</a>
+            <a href="#testimonials">Statistik</a>
         </div>
     </nav>
     
@@ -632,6 +669,11 @@ nav {
     </div>
 </section>
 
+<script>
+    document.getElementById("projectCount").textContent = document.querySelectorAll(".gallery img").length;
+</script>
+
+
 <!-- Modal -->
 <div id="imageModal" class="modal" onclick="closeModal()" style="display: none;">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -654,11 +696,139 @@ nav {
     }
 </script>
 
+<section id="services">
+    <h2>Jejak Perjalanan Linkku Aerial</h2>
+    <div class="services-container">    
+        <div class="service-card">
+            <i class="fas fa-project-diagram"></i> 
+            <h3>Total Proyek</h3>
+            <p><strong>20+</strong></p>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Wilayah Cakupan</h3>
+            <p>Bandung dan Sekitarnya</p>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-calendar-alt"></i> 
+            <h3>Berdiri Sejak</h3>
+            <p>2024</p>
+        </div>
+    </div>
+    <p>Linkku Aerial siap memberikan perspektif terbaik dari setiap sudut pandang.</p>
+</section>
+
+<section id="statistik" class="bg-dark py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold text-white mb-4">Statistik Kami</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-sm-6 col-12 mb-4">
+                <div class="circle-chart">
+                    <svg width="200" height="200">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#ddd" stroke-width="12"></circle>
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#4DA8DA" stroke-width="12" stroke-dasharray="502" stroke-dashoffset="100"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        <span class="percentage">200+</span>
+                        <p class="text-white">Jam Terbang</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-12 mb-4">
+                <div class="circle-chart">
+                    <svg width="200" height="200">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#ddd" stroke-width="12"></circle>
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#28A745" stroke-width="12" stroke-dasharray="502" stroke-dashoffset="0"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        <span class="percentage">100%</span>
+                        <p class="text-white">Kepuasan Pelanggan</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-12 mb-4">
+                <div class="circle-chart">
+                    <svg width="200" height="200">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#ddd" stroke-width="12"></circle>
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#F39C12" stroke-width="12" stroke-dasharray="502" stroke-dashoffset="251"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        <span class="percentage">50+</span>
+                        <p class="text-white">Jumlah Klien</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-12 mb-4">
+                <div class="circle-chart">
+                    <svg width="200" height="200">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#ddd" stroke-width="12"></circle>
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#E74C3C" stroke-width="12" stroke-dasharray="502" stroke-dashoffset="400"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        <span class="percentage">4+</span>
+                        <p class="text-white">Cakupan Wilayah</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.circle-chart {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.6) 100%);
+    box-shadow: 0 0 15px rgba(0,255,255,0.7), inset 0 0 10px rgba(0,255,255,0.4);
+}
+.circle-chart:hover {
+    transform: scale(1.1);
+}
+.circle-chart svg {
+    transform: rotate(-90deg);
+}
+circle {
+    transition: stroke-dashoffset 1.5s ease-out, stroke 0.3s ease-in-out;
+    stroke-linecap: round;
+}
+circle:hover {
+    stroke: #0ff;
+}
+.circle-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0ff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0,255,255,0.8);
+}
+p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    color: #0ff;
+    text-shadow: 0 0 5px rgba(0,255,255,0.6);
+}
+</style>
+
+
+
+
+
 
 <section id="testimonials" class="testimonials">
     <div class="testimonial-card">
         <p>"✨ Hasil video cinematic yang memukau, pelayanan terbaik, dan kepuasan yang terjamin! 📸🎥 Jangan biarkan momen berharga Anda berlalu begitu saja. Ayo, tunggu apa lagi? Booking sekarang dan abadikan setiap momen dengan kualitas terbaik! 🚀🔥"</p>
-        <h4></h4>
     </div>
 </section>
 
