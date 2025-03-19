@@ -183,7 +183,6 @@ nav {
     display: flex;
     justify-content: center;
     flex-grow: 1; 
-    margin-left: -170px;
 }
 
 .nav-links a {
