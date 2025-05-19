@@ -3,284 +3,1496 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Linkku Aerial - Jasa Videografi Aerial Cinematic Profesional">
-    <title>Linkku Aerial</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="Linkku Aerial - Jasa Videografi Aerial Cinematic Profesional di Bandung">
+    <title>Linkku Aerial | Jasa Drone Profesional Bandung</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="foto/LINKKU1.jpg" type="image/png">
-    
-    
-
-    <script>
-        function toggleMenu() {
-            document.querySelector(".nav-links").classList.toggle("active");
+    <style>
+        :root {
+            --primary: #00c8b3;
+            --primary-dark: #009688;
+            --secondary: #ff6b6b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
         }
-    </script>
         
-<body>
-    <nav>
-        <div class="logo">
-            <img src="foto/LINKKU22.png" alt="Logo">
-            <span>LINKKU AERIAL</span>
-        </div>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-        <div class="nav-links">
-            <a href="#about">Tentang Kami</a>
-            <a href="#services">Layanan</a>
-            <a href="#pricing">Paket Jasa</a>
-            <a href="#gallery">Galeri</a>
-            <a href="#statistik">Statistik</a>
-        </div>
-    </nav>
-    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(26, 26, 46, 0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        nav.scrolled {
+            padding: 1rem 5%;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo img {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: rotate(15deg);
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--light);
+            z-index: 1001;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            z-index: -1;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        
+        .hero-bg.active {
+            opacity: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.5s;
+        }
+        
+        @keyframes fadeUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .hero-logo {
+            width: 150px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 20px rgba(0, 200, 179, 0.5));
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--light), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 200, 179, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 200, 179, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--light);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* About Section */
+        .section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .portfolio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        /* Services Section */
+        .services {
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 200, 179, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 200, 179, 0.2);
+            border-color: rgba(0, 200, 179, 0.3);
+        }
+        
+        .service-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Gallery Section */
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .gallery {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .gallery-item {
+            min-width: 300px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            scroll-snap-align: start;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-nav:hover {
+            background: var(--primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .gallery-prev {
+            left: 1rem;
+        }
+        
+        .gallery-next {
+            right: 1rem;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('foto/drone-bg.jpg') center/cover no-repeat;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+        
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 200, 179, 0.1), rgba(255, 107, 107, 0.1));
+            z-index: 0;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 10px 20px rgba(0, 200, 179, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-title {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        /* Pricing Section */
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 200, 179, 0.3);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-bottom-left-radius: 15px;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .pricing-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .pricing-card .btn {
+            width: 100%;
+        }
+        
+        .terms {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .terms h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .terms ul {
+            list-style-position: inside;
+        }
+        
+        .terms li {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+        
+        /* Testimonials */
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 0 1rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            position: relative;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .testimonial-text::before {
+            top: -1rem;
+            left: -1rem;
+        }
+        
+        .testimonial-text::after {
+            bottom: -2rem;
+            right: -1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: #0a0a14;
+            padding: 4rem 5% 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .footer-column p, .footer-column a {
+            opacity: 0.8;
+            margin-bottom: 0.8rem;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-column a {
+            text-decoration: none;
+            color: var(--light);
+        }
+        
+        .footer-column a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 200, 179, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 200, 179, 0.4);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                margin-top: 2rem;
+                transform: none;
+            }
+            
+            .about-image:hover {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: rgba(0,0,0,0.9);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-logo {
+                width: 100px;
+            }
+            
+            .section {
+                padding: 4rem 5%;
+            }
+            
+            .gallery-item {
+                min-width: 250px;
+                height: 150px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="parallax">
-            <img src="foto/LINKKU22.png" alt="Linkku Aerial Logo" class="ilogo">
-            <h1>Linkku Aerial</h1>
-            <p>Jasa Videografi Aerial Cinematic Profesional</p>
-            <a href="https://wa.me/6285269617993" target="_blank" class="contact-btn">Booking</a>
-            <div class="cta-container">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <img src="foto/LINKKU22.png" alt="Linkku Aerial Logo">
+            <span class="logo-text">LINKKU AERIAL</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="#home">Beranda</a>
+            <a href="#about">Tentang Kami</a>
+            <a href="#services">Layanan</a>
+            <a href="#gallery">Galeri</a>
+            <a href="#pricing">Harga</a>
+            <a href="#contact">Kontak</a>
+        </div>
+        
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <img src="foto/1.jpg" alt="Drone Shot 1" class="hero-bg active">
+        <img src="foto/2.jpg" alt="Drone Shot 2" class="hero-bg">
+        <img src="foto/3.jpg" alt="Drone Shot 3" class="hero-bg">
+        <img src="foto/4.jpg" alt="Drone Shot 4" class="hero-bg">
+        
+        <div class="hero-content">
+            <img src="foto/LINKKU22.png" alt="Linkku Aerial Logo" class="hero-logo floating">
+            <h1>Abadikan Momen dari Sudut Pandang Baru</h1>
+            <p>Jasa videografi aerial profesional dengan kualitas cinematic 4K untuk kebutuhan komersial dan pribadi</p>
+            
+            <div class="cta-buttons">
+                <a href="https://wa.me/6285269617993" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pesan Sekarang
+                </a>
+                <a href="#gallery" class="btn btn-secondary">
+                    <i class="fas fa-images"></i> Lihat Galeri
+                </a>
             </div>
         </div>
-    </header>
-    
-    
-    <section id="about" class="about">
+        
+        <a href="#about" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-title">
+            <h2>Tentang Linkku Aerial</h2>
+            <p>Profesionalisme dan kreativitas dalam setiap frame yang kami hasilkan</p>
+        </div>
+        
         <div class="about-content">
-            <h2>Apa itu Linkku Aerial?</h2>
-            <p>Linkku Aerial adalah penyedia jasa videografi aerial cinematic profesional yang mengabadikan momen terbaik Anda dari perspektif yang unik dan menakjubkan.</p>
+            <div class="about-text">
+                <h3>Mengapa Memilih Kami?</h3>
+                <p>Linkku Aerial adalah penyedia jasa videografi dan fotografi udara profesional yang berbasis di Bandung. Dengan pengalaman lebih dari 3 tahun di industri ini, kami telah membantu berbagai klien dari berbagai sektor untuk mendapatkan konten visual yang menakjubkan.</p>
+                <p>Kami menggunakan peralatan terbaru dan teknologi mutakhir untuk memastikan setiap proyek yang kami kerjakan memiliki kualitas terbaik. Tim kami terdiri dari pilot drone bersertifikat dan editor video profesional yang siap mewujudkan visi kreatif Anda.</p>
+                
+                <div class="portfolio">
+                    <a href="https://drive.google.com/drive/folders/1tJKLWoZCMK54vhZ4CD7AtZlHV2G31FTq" 
+                       target="_blank" class="btn btn-secondary portfolio-btn">
+                        <i class="fas fa-folder-open"></i> Lihat Portofolio Lengkap
+                    </a>
+                </div>
+            </div>
             
-            <div class="portfolio">
-                <h3>Portofolio</h3>
-                <p>Lihat lebih banyak proyek kami di Google Drive.</p>
-                <a href="https://drive.google.com/drive/folders/1tJKLWoZCMK54vhZ4CD7AtZlHV2G31FTq" 
-                   target="_blank" class="portfolio-btn">Lihat Portofolio</a>
+            <div class="about-image">
+                <img src="foto/sertifikasi drone dzaki.jpg" alt="Drone Operator">
             </div>
         </div>
     </section>
-    
-    
-<section id="services">
-    <h2>Layanan</h2>
-    <div class="services-container">    
-        <div class="service-card">
-            <i class="fas fa-video"></i>
-            <h3>Video 4K Ultra HD</h3>
-            <p>Kualitas video aerial dengan resolusi tinggi untuk berbagai kebutuhan.</p>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="section-title">
+            <h2>Layanan Kami</h2>
+            <p>Berbagai solusi kreatif untuk kebutuhan aerial photography dan videography Anda</p>
         </div>
-        <div class="service-card">
-            <i class="fas fa-camera"></i>
-            <h3>Foto Udara</h3>
-            <p>Foto udara berkualitas tinggi untuk proyek dan dokumentasi.</p>
+        
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Video Cinematic 4K</h3>
+                <p>Produksi video cinematic berkualitas tinggi dengan resolusi 4K untuk berbagai kebutuhan seperti iklan, dokumentasi, dan konten media sosial.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-camera-retro"></i>
+                </div>
+                <h3>Foto Udara Profesional</h3>
+                <p>Jasa fotografi udara untuk properti, acara, lanskap, dan kebutuhan komersial lainnya dengan kualitas tinggi dan sudut pandang unik.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-film"></i>
+                </div>
+                <h3>Editing Video</h3>
+                <p>Layanan pasca produksi termasuk color grading, sound design, dan efek khusus untuk menghasilkan video yang profesional dan menarik.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3>Pemetaan & Survey</h3>
+                <p>Solusi pemetaan udara untuk konstruksi, pertanian, dan industri lainnya dengan akurasi tinggi menggunakan teknologi drone mutakhir.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Coverage Acara</h3>
+                <p>Dokumentasi acara dari udara seperti pernikahan, konser, festival, dan acara besar lainnya dengan sudut pandang spektakuler.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Real Estate</h3>
+                <p>Fotografi dan videografi properti untuk showcase yang lebih menarik dengan tampilan aerial yang memukau.</p>
+            </div>
         </div>
-        <div class="service-card">
-            <i class="fas fa-film"></i>
-            <h3>Editing Video Cinematic</h3>
-            <p>Penyuntingan video dengan efek cinematic untuk hasil yang lebih dramatis.</p>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+        <div class="section-title">
+            <h2>Galeri Kami</h2>
+            <p>Beberapa hasil karya terbaik kami dalam berbagai proyek</p>
         </div>
-        <div class="service-card">
-            <i class="fas fa-map-marked-alt"></i>
-            <h3>Survey dan Mapping</h3>
-            <p>Pemetaan menggunakan drone untuk kebutuhan industri dan penelitian.</p>
+        
+        <div class="gallery-container">
+            <button class="gallery-nav gallery-prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="foto/1.jpg" alt="Proyek 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/2.jpg" alt="Proyek 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/3.jpg" alt="Proyek 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/4.jpg" alt="Proyek 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/5.jpg" alt="Proyek 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/6.jpg" alt="Proyek 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/7.jpg" alt="Proyek 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/8.jpg" alt="Proyek 8">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/9.jpg" alt="Proyek 9">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/10.jpg" alt="Proyek 10">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/11.jpg" alt="Proyek 11">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/12.jpg" alt="Proyek 12">
+                </div>
+                <div class="gallery-item">
+                    <img src="foto/13.jpg" alt="Proyek 13">
+                </div>
+            </div>
+            
+            <button class="gallery-nav gallery-next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
+    </section>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <span class="close-modal">&times;</span>
+        <img src="" alt="" class="modal-content" id="modalImage">
     </div>
-</section>
-<section id="gallery">
-    <h2>Galeri</h2>
-    <div class="gallery-container">
-        <button class="nav-button left" onclick="scrollGallery(-1)">&#10094;</button>
-        <div class="gallery">
-            <img src="foto/1.jpg" alt="Proyek 1" onclick="openModal(this.src)">
-            <img src="foto/2.jpg" alt="Proyek 2" onclick="openModal(this.src)">
-            <img src="foto/3.jpg" alt="Proyek 3" onclick="openModal(this.src)">
-            <img src="foto/4.jpg" alt="Proyek 4" onclick="openModal(this.src)">
-            <img src="foto/5.jpg" alt="Proyek 5" onclick="openModal(this.src)">
-            <img src="foto/6.jpg" alt="Proyek 6" onclick="openModal(this.src)">
-            <img src="foto/7.jpg" alt="Proyek 7" onclick="openModal(this.src)">
-            <img src="foto/8.jpg" alt="Proyek 8" onclick="openModal(this.src)">
-            <img src="foto/9.jpg" alt="Proyek 9" onclick="openModal(this.src)">
-            <img src="foto/10.jpg" alt="Proyek 10" onclick="openModal(this.src)">
-            <img src="foto/11.jpg" alt="Proyek 11" onclick="openModal(this.src)">
-            <img src="foto/12.jpg" alt="Proyek 12" onclick="openModal(this.src)">
-            <img src="foto/13.jpg" alt="Proyek 13" onclick="openModal(this.src)">
+
+    <!-- Stats Section -->
+    <section class="section stats">
+        <div class="section-title">
+            <h2>Dalam Angka</h2>
+            <p>Pencapaian kami dalam memberikan layanan terbaik</p>
         </div>
-        <button class="nav-button right" onclick="scrollGallery(1)">&#10095;</button>
-    </div>
-
-</section>
-
-<script>
-    document.getElementById("projectCount").textContent = document.querySelectorAll(".gallery img").length;
-</script>
-
-
-<!-- Modal -->
-<div id="imageModal" class="modal" onclick="closeModal()" style="display: none;">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImg">
-</div>
-
-<script>
-    function openModal(src) {
-        document.getElementById("imageModal").style.display = "flex";
-        document.getElementById("modalImg").src = src;
-    }
-
-    function closeModal() {
-        document.getElementById("imageModal").style.display = "none";
-    }
-
-    function scrollGallery(direction) {
-        const gallery = document.querySelector(".gallery");
-        gallery.scrollBy({ left: direction * 300, behavior: 'smooth' });
-    }
-</script>
-
-<section id="services">
-    <h2>Jejak Perjalanan Linkku Aerial</h2>
-    <div class="services-container">    
-        <div class="service-card">
-            <i class="fas fa-project-diagram"></i> 
-            <h3>Total Proyek</h3>
-            <p><strong>20+</strong></p>
+        
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-title">Jam Terbang</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-title">Klien Puas</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-number">30+</div>
+                <div class="stat-title">Proyek Selesai</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-number">4+</div>
+                <div class="stat-title">Wilayah Cakupan</div>
+            </div>
         </div>
-        <div class="service-card">
-            <i class="fas fa-map-marker-alt"></i>
-            <h3>Wilayah Cakupan</h3>
-            <p>Bandung dan Sekitarnya</p>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-calendar-alt"></i> 
-            <h3>Berdiri Sejak</h3>
-            <p>2024</p>
-        </div>
-    </div>
-    <p>Linkku Aerial siap memberikan perspektif terbaik dari setiap sudut pandang.</p>
-</section>
+    </section>
 
-<section id="pricing">
-    <h2>Paket Jasa Drone </h2>
-    <div class="pricing-container">
-        <div class="pricing-card">
-            <h3>Sewa Drone + Pilot</h3>
-            <p>Tinggal pesan, kami terbangkan! Cocok untuk event, proyek, dan dokumentasi profesional.</p>
+    <!-- Pricing Section -->
+    <section class="section" id="pricing">
+        <div class="section-title">
+            <h2>Paket Harga</h2>
+            <p>Solusi lengkap dengan harga kompetitif untuk berbagai kebutuhan</p>
+        </div>
+        
+        <div class="pricing-container">
+            <div class="pricing-card">
+                <h3>Sewa Drone + Pilot</h3>
+                <div class="price">Rp 500.000 <span>/ 3 jam</span></div>
+                <ul class="pricing-features">
+                    <li>Drone DJI Mavic Air 2</li>
+                    <li>Pilot berpengalaman</li>
+                    <li>Video resolusi 4K</li>
+                    <li>File mentah (RAW)</li>
+                    <li>Asuransi peralatan</li>
+                </ul>
+                <a href="https://wa.me/6285269617993" class="btn btn-primary" target="_blank">Pesan Sekarang</a>
+            </div>
+            
+            <div class="pricing-card popular">
+                <div class="popular-badge">POPULAR</div>
+                <h3>Half Day Package</h3>
+                <div class="price">Rp 700.000 <span>/ 5 jam</span></div>
+                <ul class="pricing-features">
+                    <li>Drone DJI Mavic Air 2</li>
+                    <li>Pilot berpengalaman</li>
+                    <li>Video 4K + Foto RAW</li>
+                    <li>Basic color grading</li>
+                    <li>Asuransi peralatan</li>
+                    <li>Editing</li>
+                </ul>
+                <a href="https://wa.me/6285269617993" class="btn btn-primary" target="_blank">Pesan Sekarang</a>
+            </div>
+            
+            <div class="pricing-card">
+                <h3>Full Day Package</h3>
+                <div class="price">Rp 1.200.000 <span>/ 8 jam</span></div>
+                <ul class="pricing-features">
+                    <li>Drone DJI Mavic Air 2
+                        Pilot berpengalaman
+                    </li>
+                    <li>2x baterai ekstra</li>
+                    <li>Video 4K HDR + Foto RAW</li>
+                    <li>Advanced color grading</li>
+                    <li>Asuransi peralatan</li>
+                    <li>Editing</li>
+                    <li>Versi media sosial</li>
+                </ul>
+                <a href="https://wa.me/6285269617993" class="btn btn-primary" target="_blank">Pesan Sekarang</a>
+            </div>
+        </div>
+        
+        <div class="terms">
+            <h3>Ketentuan Layanan:</h3>
             <ul>
-                <li><strong>3 Jam:</strong> Rp 500.000</li>
-                <li><strong>5 Jam (Half Day):</strong> Rp 700.000</li>
-                <li><strong>Seharian (Full Day):</strong> Rp 1.200.000</li>
+                <li>Pembayaran minimal 10% sebagai DP untuk booking jadwal</li>
+                <li>Biaya transportasi berlaku untuk lokasi di luar Bandung</li>
+                <li>Cuaca buruk dapat menyebabkan penjadwalan ulang</li>
             </ul>
         </div>
+    </section>
 
-        <div class="pricing-card">
-            <h3>Sewa Drone Tanpa Pilot</h3>
-            <p>Untuk Anda yang sudah mahir terbang sendiri.</p>
-            <ul>
-                <li><strong>6 Jam:</strong> Rp 700.000</li>
-                <li><strong>1 Hari:</strong> Rp 1.000.000</li>
-            </ul>
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Apa Kata Klien Kami</h2>
+            <p>Testimoni dari berbagai klien yang telah bekerja sama dengan kami</p>
         </div>
-    </div>
-
-    <div class="terms">
-        <h3>Ketentuan:</h3>
-        <ul>
-            <li>Wajib menyerahkan KTP & SIM sebagai jaminan.</li>
-            <li>Drone harus dikembalikan tepat waktu dan dalam kondisi baik.</li>
-            <li>Sewa tanpa pilot hanya untuk yang berpengalaman.</li>
-        </ul>
-    </div>
-</section>
-
-
-
-<section id="statistik" class="bg-dark py-5">
-    <div class="container text-center">
-        <h2 class="fw-bold text-white mb-4">Statistik Kami</h2>
-        <div class="row justify-content-center">
-            <div class="col-md-3 col-sm-6 col-12 mb-4">
-                <div class="circle-chart">
-                    <svg width="200" height="200">
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="#ddd" stroke-width="12"></circle>
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="#4DA8DA" stroke-width="12" stroke-dasharray="502" stroke-dashoffset="100"></circle>
-                    </svg>
-                    <div class="circle-content">
-                        <span class="percentage">200+</span>
-                        <p class="text-white">Jam Terbang</p>
-                    </div>
+        
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    Hasil video cinematic yang memukau, pelayanan terbaik, dan kepuasan yang terjamin! Jangan biarkan momen berharga Anda berlalu begitu saja. Ayo, tunggu apa lagi? Booking sekarang dan abadikan setiap momen dengan kualitas terbaik!
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-12 mb-4">
-                <div class="circle-chart">
-                    <svg width="200" height="200">
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="#ddd" stroke-width="12"></circle>
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="#28A745" stroke-width="12" stroke-dasharray="502" stroke-dashoffset="0"></circle>
-                    </svg>
-                    <div class="circle-content">
-                        <span class="percentage">100%</span>
-                        <p class="text-white">Kepuasan Pelanggan</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-12 mb-4">
-                <div class="circle-chart">
-                    <svg width="200" height="200">
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="#ddd" stroke-width="12"></circle>
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="#F39C12" stroke-width="12" stroke-dasharray="502" stroke-dashoffset="251"></circle>
-                    </svg>
-                    <div class="circle-content">
-                        <span class="percentage">50+</span>
-                        <p class="text-white">Jumlah Klien</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-12 mb-4">
-                <div class="circle-chart">
-                    <svg width="200" height="200">
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="#ddd" stroke-width="12"></circle>
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="#E74C3C" stroke-width="12" stroke-dasharray="502" stroke-dashoffset="400"></circle>
-                    </svg>
-                    <div class="circle-content">
-                        <span class="percentage">4+</span>
-                        <p class="text-white">Cakupan Wilayah</p>
-                    </div>
-                </div>
+                <div class="testimonial-author">- PT. Maju Bersama</div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="testimonials" class="testimonials">
-    <div class="testimonial-card">
-        <p>"✨ Hasil video cinematic yang memukau, pelayanan terbaik, dan kepuasan yang terjamin! 📸🎥 Jangan biarkan momen berharga Anda berlalu begitu saja. Ayo, tunggu apa lagi? Booking sekarang dan abadikan setiap momen dengan kualitas terbaik! 🚀🔥"</p>
-    </div>
-</section>
-
-        <footer>
-            <div class="social">
-                <a href="https://www.instagram.com/linkku_aerial" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@inilinkku._" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me/6281234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-title">
+            <h2>Hubungi Kami</h2>
+            <p>Siap membantu kebutuhan videografi aerial Anda</p>
+        </div>
+        
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Tentang Kami</h3>
+                <p>Linkku Aerial adalah penyedia jasa videografi aerial profesional yang berkomitmen untuk memberikan hasil terbaik dengan teknologi terkini.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/linkku_aerial" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@inilinkku._" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/6285269617993" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
-            <p>&copy; 2025 Linkku Aerial. Semua Hak Cipta Dilindungi.</p>
-        </footer>
-    </body>
+            
+            <div class="footer-column">
+                <h3>Kontak</h3>
+                <a href="tel:+6285269617993"><i class="fas fa-phone"></i> +62 852-6961-7993</a>
+                <a href="mailto:linkkuaerial@gmail.com"><i class="fas fa-envelope"></i> linkkuaerial@gmail.com</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Bandung, Jawa Barat</a>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Jam Operasional</h3>
+                <p><strong>Senin - Jumat:</strong> 08.30 -21.00</p>
+                <p><strong>Sabtu:</strong> 07.00 - 21.00</p>
+                <p><strong>Minggu:</strong> 07.00 - 21.00</p>
+                <p>*Kecuali untuk proyek khusus</p>
+            </div>
+        </div>
+    </section>
 
-<script>
-    window.addEventListener("scroll", function () {
-        const parallax = document.querySelector(".parallax");
-        let scrollPosition = window.pageYOffset;
-        parallax.style.transform = `translateY(${scrollPosition * 0.3}px)`;
-    });
+    <!-- Footer -->
+    <footer>
+        <div class="copyright">
+            &copy; 2025 Linkku Aerial. All Rights Reserved.
+        </div>
+    </footer>
 
-    window.onload = function() {
-    window.scrollTo(0, 0);
-};
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
-</script>
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            menuToggle.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Back to top button
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Hero background slideshow
+        const heroBg = document.querySelectorAll('.hero-bg');
+        let currentBg = 0;
+        
+        function changeBackground() {
+            heroBg[currentBg].classList.remove('active');
+            currentBg = (currentBg + 1) % heroBg.length;
+            heroBg[currentBg].classList.add('active');
+        }
+        
+        setInterval(changeBackground, 5000);
+
+        // Gallery navigation
+        const gallery = document.querySelector('.gallery');
+        const prevBtn = document.querySelector('.gallery-prev');
+        const nextBtn = document.querySelector('.gallery-next');
+        
+        prevBtn.addEventListener('click', () => {
+            gallery.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            gallery.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+
+        // Image modal
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModal = document.querySelector('.close-modal');
+        
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                modal.classList.add('show');
+                modalImg.src = img.src;
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+
+        // Scroll reveal animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        function checkScroll() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('show');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
